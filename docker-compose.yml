@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8000:8080
+
+  db:
+    image: postgres:15.2-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: bdgest_root
+      POSTGRES_PASSWORD: bdgest123!
+      POSTGRES_DB: bdgest
+    volumes:
+      - bdgest-database:/data/postgres
+
+
+volumes:
+  bdgest-database:
